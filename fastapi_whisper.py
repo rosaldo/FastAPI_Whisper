@@ -13,7 +13,7 @@ audio_mp3 = "audio.mp3"
 host_dev = "127.0.0.1"
 port_dev = "8888"
 title="FastAPI to access AI Whisper's features for audio and video transcription"
-version="Alpha.1.1"
+version="alpha.1.1"
 
 api = FastAPI(title=title, version=version)
     
@@ -29,7 +29,7 @@ async def audio(file:UploadFile=File()):
         open(audio_source, "wb").write(audio_content)
         audio = AudioFileClip(audio_source)
         audio.write_audiofile(audio_mp3, codec="mp3")
-        model = whisper.load_model("base")  
+        model = whisper.load_model("base")
         result = model.transcribe(audio_mp3, fp16=False)
         os.remove(audio_source)
         os.remove(audio_mp3)
